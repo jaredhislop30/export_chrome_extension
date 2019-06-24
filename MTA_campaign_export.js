@@ -48,11 +48,12 @@ if(document.title.toLowerCase().indexOf('mta')>-1 || document.title.toLowerCase(
             var domain = document.domain;
             //31320
             //http://taggen.catalina.com:31320/
-            if(domain.indexOf("taggen")>-1){
-                var url_port = "31320";
-            }else{
-                var url_ort = "11110"
-            }
+            // if(domain.indexOf("taggen")>-1){
+            var url_port = "31310";
+            var url_domain = "10.176.45.70";
+            // }else{
+            //     var url_port = "11110"
+            // }
             var campaign_url = "http://"+domain+":"+url_port+"/omni/attrib/campaign/"+document.URL.split("campaignId=")[1];
             console.log(campaign_url);
             port.postMessage({action: "export_mta",url:campaign_url,domain:domain,url_port:url_port});
