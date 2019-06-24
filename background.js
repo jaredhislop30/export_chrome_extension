@@ -130,9 +130,8 @@ chrome.runtime.onConnect.addListener(function(port) {
 
             port.postMessage({action: "step",step:"middle of function",data:line_item_output});    
             //http://10.176.45.68:11110/omni/attrib/tag/lineitem/76954c6e-7323-4eb0-a58e-7cb0750e4905
-            var mta_url = "http://"+msg.domain+":11110/omni/attrib/tag/lineitem/"+line_item_output.line_item_mta_id;
-            var true_check = mta_url == "http://10.176.45.68:11110/omni/attrib/tag/lineitem/76954c6e-7323-4eb0-a58e-7cb0750e4905"
-            port.postMessage({action: "step",step:"URL Check",data:mta_url,is_same:true_check}); //Build URL to pull MTA Line Items Tags
+            var mta_url = "http://"+msg.domain+":"+port+"/omni/attrib/tag/lineitem/"+line_item_output.line_item_mta_id;
+            port.postMessage({action: "step",step:"URL Check",data:mta_url}); //Build URL to pull MTA Line Items Tags
             jQuery.ajax({url: mta_url, type: 'GET', success: function(result){
                 
                 ldt = result;

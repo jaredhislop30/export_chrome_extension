@@ -45,10 +45,17 @@ if(document.title.toLowerCase().indexOf('mta')>-1 || document.title.toLowerCase(
 
     chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
         if(request.action == "export_catalina"){
-            var campaign_url = "http://"+document.domain+":11110/omni/attrib/campaign/"+document.URL.split("campaignId=")[1];
-            console.log(campaign_url);
             var domain = document.domain;
-            port.postMessage({action: "export_mta",url:campaign_url,domain:domain});
+            //31320
+            //http://taggen.catalina.com:31320/
+            if(domain.indexOf("taggen")>-1){
+                var port = "31320";
+            }else{
+                var port = "11110"
+            }
+            var campaign_url = "http://"+domain+":"+port+"/omni/attrib/campaign/"+document.URL.split("campaignId=")[1];
+            console.log(campaign_url);
+            port.postMessage({action: "export_mta",url:campaign_url,domain:domain,port:port});
         }else if(request.action == "export_cancel"){
             exportCanceled == true;
         }
