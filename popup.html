@@ -1,0 +1,154 @@
+			<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href='https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css' rel='stylesheet'>
+
+    <style>
+      body {
+        width:  460px;
+        height: 300px;
+      }
+    </style>
+    <script src="jquery.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <script src="popup.js"></script>
+  </head>
+  <body>
+    <div class="container" id="step1">
+      <h3 style="text-align:center">Please select a Vendor to export</h3>
+      <table class='table'>
+        <tr class="button" data-state='off'>
+          <td>
+            <img style="padding-top: 15px;padding-bottom:15px;height:56px;" class="button" src="tradedesk.svg" alt="TheTradeDesk" id="tradedesk_start"/>
+          </td>
+        </tr>
+        <tr class="button" data-state='off'>
+          <td>
+            <img style="padding-top: 15px;padding-bottom:15px;height:56px;" class="button" src="4info.png" alt="4info" id="4info_start"/>
+          </td>
+        </tr>
+        <tr class="button" data-state='off'>
+          <td>
+            <img style="padding-top: 15px;padding-bottom:15px;height:56px;" class="button" src="bees.png" alt="beeswax" id="beeswax_start"/>
+          </td>
+        </tr>
+        <tr class="button" data-state='off'>
+          <td>
+            <img style="padding-top: 15px;padding-bottom:15px;height:56px;" class="button" src="catalina.png" alt="catalina" id="catalina_start"/>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="container" id="step2_trade" style="display: none;">
+      <div style="text-align: center;">
+        <img style="padding-top: 15px;padding-bottom:15px" src="tradedesk.svg" alt="TheTradeDesk"/>
+      </div>
+      <div>
+        <p>Please Follow these steps to export a campaign within TheTradeDesk. </p>
+        <ul>
+          <li>1) Login in to TheTradeDesk</li>
+          <li> 2)  Select the Advertiser </li>
+          <li>3) Select the Campaign you wish to export</li>
+        </ul>
+        <p>The URL should  look like this: </p>
+        <p>https://desk.thetradedesk.com/Campaigns/Detail/&lt;campaignID&gt;?advertiser=&lt;advertiserID&gt;</p>
+        <p style="margin:5px;text-align: center; width: 100%;display:none;cursor:default;" id="tradedesk_warning" class="btn btn-warning">Whoa! You do not appear to be on the correct URL.<br>Please ensure you are on the correct URL and try again.<br> The URL should  look like the above example.</p>
+        <p style="margin:5px;text-align: center;"><button id="tradedesk_back" style="float:left;" class="btn btn-primary">Back</button> <button id="tradedesk_export" class="btn btn-primary">Begin Export</button>
+        
+      </div>
+    </div>
+    <div class="container" id="step2_4info" style="display: none;">
+      <div style="text-align: center;">
+        <img style="padding-top: 15px;padding-bottom:15px" src="4info.png" alt="4info"/>
+      </div>
+      <div>
+        <p>Please Follow these steps to export a campaign within 4INFO. </p>
+        <ul>
+          <li>1) Login in to 4INFO</li>
+          <li> 2)  Select the Advertiser </li>
+          <li>3) Select the Campaign you wish to export</li>
+        </ul>
+        <p>The URL should  look like this: </p>
+        <p>https://campaigns.4info.com/phoenix/#/campaignSummary/<br>&lt;campaignID&gt;</p>
+        <p style="margin:5px;text-align: center; width: 100%;display:none;cursor:default;" id="4info_warning" class="btn btn-warning">Whoa! You do not appear to be on the correct URL.<br>Please ensure you are on the correct URL and try again.<br> The URL should  look like the above example.</p>
+        <p style="margin:5px;text-align: center;"><button id="4info_back" style="float:left;" class="btn btn-primary">Back</button> <button id="4info_export" class="btn btn-primary">Begin Export</button>
+      </div>
+    </div>
+    <div class="container" id="step2_beeswax" style="display: none;">
+      <div style="text-align: center;">
+        <img style="padding-top: 15px;padding-bottom:15px" width="200px" src="bees.png" alt="beeswax"/>
+      </div>
+      <div>
+        <p>Please Follow these steps to export a campaign within Beeswax. </p>
+        <ul>
+          <li>1) Login in to Beeswax</li>
+          <li> 2) Select the Advertiser </li>
+          <li>3) Select the Campaign you wish to export</li>
+        </ul>
+        <p>The URL should  look like this: </p>
+        <p>https://catalina.beeswax.com/advertisers/&lt;advertiserID&gt;/campaigns/<br>&lt;campaignID&gt;/line_items?all=1</p>
+        <p style="margin:5px;text-align: center; width: 100%;display:none;cursor:default;" id="beeswax_warning" class="btn btn-warning">Whoa! You do not appear to be on the correct URL.<br>Please ensure you are on the correct URL and try again.<br> The URL should  look like the above example.</p>
+        <p style="margin:5px;text-align: center;"><button id="beeswax_back" style="float:left;" class="btn btn-primary">Back</button> <button id="beeswax_export" class="btn btn-primary">Begin Export</button>
+        
+      </div>
+    </div>
+    <div class="container" id="step2_catalina" style="display: none;">
+      <div style="text-align: center;">
+        <img style="padding-top: 15px;padding-bottom:15px" width="200px" src="catalina.png" alt="catalina"/>
+      </div>
+      <div>
+        <p>Please Follow these steps to export campaign and MTA Tags from within the MTA Tag Builder UI.</p>
+        <ul>
+          <li>1) Login in to the MTA UI</li>
+          <li> 2) Select the Advertiser </li>
+          <li>3) Select the Campaign you wish to export</li>
+        </ul>
+        <p>The URL should  look like this: </p>
+        <p>/omni/attrib/campaign/&lt;campaignID&gt;</p>
+        <p style="margin:5px;text-align: center; width: 100%;display:none;cursor:default;" id="catalina_warning" class="btn btn-warning">Whoa! You do not appear to be on the correct URL.<br>Please ensure you are on the correct URL and try again.<br> The URL should  look like the above example.</p>
+        <p style="margin:5px;text-align: center;"><button id="catalina_back" style="float:left;" class="btn btn-primary">Back</button> <button id="catalina_export" class="btn btn-primary">Begin Export</button>
+      </div>
+    </div>
+    <div class="container" id="step3_trade" style="display: none;">
+      <div style="text-align: center;">
+        <img style="padding-top: 15px;padding-bottom:15px" class="button" src="tradedesk.svg" alt="TheTradeDesk"/>
+      </div>
+      <div>
+        <p style="margin-top: 10%;margin-bottom: 15px;" class="text-center"><span id="status">Please Wait While The Export Finishes....</span>
+          <img id="spin" style="padding-top: 15px;padding-bottom:15px" src="spin.svg" /></p>    
+        <p style="text-align: center;"><button id="tradedesk_cancel"  class="btn btn-primary">Cancel</button></p>
+      </div>
+    </div>
+    <div class="container" id="step3_4info" style="display: none;">
+      <div style="text-align: center;">
+        <img style="padding-top: 15px;padding-bottom:15px" class="button" src="4info.png" alt="4info"/>
+      </div>
+      <div>
+        <p style="margin-top: 10%;margin-bottom: 15px;" class="text-center"><span id="status">Please Wait While The Export Finishes....</span>
+          <img id="spin" style="padding-top: 15px;padding-bottom:15px" src="spin.svg" /></p>    
+        <p style="text-align: center;"><button id="4info_cancel"  class="btn btn-primary">Cancel</button></p>
+      </div>
+    </div>
+    <div class="container" id="step3_beeswax" style="display: none;">
+      <div style="text-align: center;">
+        <img style="padding-top: 15px;padding-bottom:15px" width="200px" src="bees.png" alt="beeswax"/>
+      </div>
+      <div>
+        <p style="margin-top: 10%;margin-bottom: 15px;" class="text-center"><span id="status">Please Wait While The Export Finishes....</span>
+          <img id="spin" style="padding-top: 15px;padding-bottom:15px" src="spin.svg" /></p>    
+        <p style="text-align: center;"><button id="beeswax_cancel"  class="btn btn-primary">Cancel</button></p>
+      </div>
+    </div>
+    <div class="container" id="step3_catalina" style="display: none;">
+      <div style="text-align: center;">
+        <img style="padding-top: 15px;padding-bottom:15px" width="200px" src="catalina.png" alt="catalina"/>
+      </div>
+      <div>
+        <p style="margin-top: 10%;margin-bottom: 15px;" class="text-center"><span id="status">Please Wait While The Export Finishes....</span>
+          <img id="spin" style="padding-top: 15px;padding-bottom:15px" src="spin.svg" /></p>    
+        <p style="text-align: center;"><button id="catalina_cancel"  class="btn btn-primary">Cancel</button></p>
+      </div>
+    </div>
+  </body>
+</html>
