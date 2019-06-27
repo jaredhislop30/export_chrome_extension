@@ -67,6 +67,19 @@ chrome.runtime.onConnect.addListener(function(port) {
                     // port.postMessage({action: "step",step:"data variable",number:int,variable_to_set:x,variable_value:result.payload[int][x]});    
                   }
                 }
+
+                var creative_url = "https://catalina.api.beeswax.com/rest/creative/raw/"+data[ind]["creative_id"]+"?options%5B%5D=compact"
+
+                jQuery.ajax({url: creative_url, type: 'GET', success: function(result){
+                  port.postMessage({action: "step",step:"get creative detail",data:result.payload,line_item:data[ind]});
+                  if(result.payload[0].creative_type == 1){
+                    data[ind]['creative_preview_token'] = result.payload[0]['preview_token']+"&template=video_preview";
+                  }else{
+                    data[ind]['creative_preview_token']= result.payload[0]['preview_token'];  
+                  }
+                  port.postMessage({action: "step",step:"push creative detail",data:result.payload,line_items:line_items});
+                },async:false});
+
                 for(x in data[ind]){
                   obj_d[x] = data[ind][x]
                 }

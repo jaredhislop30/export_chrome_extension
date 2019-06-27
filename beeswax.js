@@ -25,6 +25,10 @@ function generateBeesCSV(data)
         }else if(element.line_item_type=="native"){
             creative_format = "Native";
         }
+        var creative_preview_url = "https://media.bidr.io" + element.creative_thumbnail_url;
+        var creative_preview_url_php = "https://catalina.api.beeswax.com/buzz/public/CreativePreview.php?token="+element.creative_preview_token;
+
+
         campaign_start_date = get_date(element.campaign_start_date,"mm/dd/yyy")
         campaign_end_date = get_date(element.campaign_end_date,"mm/dd/yyy")
         line_item_start_datea = get_date(element.start_date,"mm/dd/yyy")
@@ -47,7 +51,7 @@ function generateBeesCSV(data)
             "Creative Format (Banner, Rich Media Banner, Video, Native, Intersitial)":element.format,//16
             "Creative ID":element.creative_id, //17
             "Creative Name":element.creative_name,//18
-            "Creative Preview URL":"",//19
+            "Creative Preview URL":creative_preview_url_php,//19
             "Creative Description":"",//20
             "Brand":'',"UPCs":'',"Networks (Name)":'',
             "New To Brand Weeks Attribution":'26',
