@@ -123,7 +123,7 @@ chrome.runtime.onConnect.addListener(function(port) {
             var line_item_output = {};
 
             var li = d.lineItems[i];
-
+             port.postMessage({action: "step",step:"line item data available",data:li});
             //Make request to get MTA Tag for each line item
             line_item_output.line_item_id = li.sortOrder;
             line_item_output.line_item_mta_id = li.id;
@@ -157,11 +157,12 @@ chrome.runtime.onConnect.addListener(function(port) {
                 var obj = {};
                 line_item_output.creative_id = li.creative[index].id;
                 line_item_output.creative_name = li.creative[index].name;
+                line_item_output.preview_url = li.creative[index].previewURL;
+                line_item_output.description = li.creative[index].description;
+                
 
                 for(x in line_item_output){
                   obj[x] = line_item_output[x]
-                  if(x.indexOf('creative')>-1){
-                  }
                 }
                 output.push(obj);
               }
@@ -169,11 +170,11 @@ chrome.runtime.onConnect.addListener(function(port) {
                 var obj = {};
                 line_item_output.creative_id = "";
                 line_item_output.creative_name = "";
+                line_item_output.preview_url = "";
+                line_item_output.description = "";
 
                 for(x in line_item_output){
                   obj[x] = line_item_output[x]
-                  if(x.indexOf('creative')>-1){
-                  }
                 }
                 output.push(obj);
             }
