@@ -15,16 +15,18 @@ function parseCampaigns(data){
             "MTA Line Item Name":element.line_item_name,//2
             "MTA Creative ID":element.creative_id, //3
             "MTA Creative Name":element.creative_name,//4
-            "MTA UI Pixel": element.bw_tag,//5
-            "MTA UI UPCs":element.UPCs,//6
-            "MTA UI Network":element.networks,//7  
+            "MTA Creative Preview URL":element.preview_url, //5
+            "MTA Creative Description":element.description, //6
+            "MTA UI Pixel": element.bw_tag,//7
+            "MTA UI UPCs":element.UPCs,//8
+            "MTA UI Network":element.networks,//9  
         });
     });
 
     var fileName = "MTA-UI_export-"+data[0]['campaign_name'].toLowerCase().replace(" ","_")+"-"+get_date()+".xlsx";
     
     var ws = XLSX.utils.json_to_sheet(exportData, { header: [
-            "Platform","MTA Line Item ID","MTA Line Item Name","MTA Creative ID","MTA Creative Name","MTA UI Pixel","MTA UI UPCs","MTA UI Network"
+            "Platform","MTA Line Item ID","MTA Line Item Name","MTA Creative ID","MTA Creative Name","MTA Creative Preview URL","MTA Creative Description","MTA UI Pixel","MTA UI UPCs","MTA UI Network"
         ] });
     var wb = XLSX.utils.book_new();
     console.log('writing file',wb);
